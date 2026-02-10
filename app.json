@@ -1,0 +1,73 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/academic/index",
+    "pages/academic/schedule/index",
+    "pages/academic/exams/index",
+    "pages/academic/homework/index",
+    "pages/academic/library/index",
+    "pages/academic/evaluation/index",
+    "pages/academic/course-select/index",
+    "pages/service/index",
+    "pages/service/canteen/index",
+    "pages/service/venue/index",
+    "pages/community/index",
+    "pages/community/news/index",
+    "pages/community/news/detail/index",
+    "pages/community/club/index",
+    "pages/community/forum/index",
+    "pages/community/forum/list/index",
+    "pages/community/activity/index",
+    "pages/community/second-hand/index",
+    "pages/community/lost-found/index",
+    "pages/community/post/index",
+    "pages/community/detail/index",
+    "pages/profile/index",
+    "pages/profile/my-posts/index",
+    "pages/profile/verify/index",
+    "pages/profile/about/index",
+    "pages/profile/settings/index"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationStyle": "default",
+    "navigationBarTitleText": "校园生活",
+    "navigationBarBackgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#999999",
+    "selectedColor": "#007aff",
+    "backgroundColor": "#ffffff",
+    "borderStyle": "black",
+    "list": [
+      {
+        "pagePath": "pages/home/index",
+        "text": "首页",
+        "iconPath": "images/gov.png",
+        "selectedIconPath": "images/gov_s.png"
+      },
+      {
+        "pagePath": "pages/academic/index",
+        "text": "学习",
+        "iconPath": "images/study.png",
+        "selectedIconPath": "images/study_s.png"
+      },
+      {
+        "pagePath": "pages/service/index",
+        "text": "生活",
+        "iconPath":"images/life.png",
+        "selectedIconPath": "images/life_s.png"
+      },
+      
+      {
+        "pagePath": "pages/profile/index",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_s.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

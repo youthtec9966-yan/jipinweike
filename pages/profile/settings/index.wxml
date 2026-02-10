@@ -1,0 +1,15 @@
+<view class="container">
+  <view class="menu-list">
+    <view class="menu-item">
+      <text>消息通知</text>
+      <switch color="#007aff" checked/>
+    </view>
+    <view class="divider"></view>
+    <view class="menu-item">
+      <text>清除缓存</text>
+      <text class="arrow">></text>
+    </view>
+  </view>
+
+  <view class="logout-btn" bindtap="onLogout">退出登录</view>
+</view>

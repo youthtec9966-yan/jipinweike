@@ -1,0 +1,87 @@
+<view class="container">
+  <!-- 未登录状态 -->
+  <block wx:if="{{!isLogin}}">
+    <view class="login-container">
+      <view class="login-header">
+        <view class="logo-circle">🎓</view>
+        <text class="app-name">校园生活助手</text>
+        <text class="app-slogan">连接校园生活每一天</text>
+      </view>
+      <button class="login-btn" hover-class="hover-opacity" bindtap="doLogin">
+        <text class="wechat-icon">💬</text> 微信一键登录
+      </button>
+      <text class="login-agreement">登录即代表同意《用户服务协议》</text>
+    </view>
+  </block>
+
+  <!-- 已登录状态 -->
+  <block wx:else>
+    <!-- 顶部背景 -->
+    <view class="academic-header">
+      <view class="header-content">
+        <text class="welcome-text">你好，同学 👋</text>
+        <text class="date-text">今天也要努力学习哦</text>
+      </view>
+    </view>
+
+    <view class="content-wrapper">
+      <!-- 功能宫格 -->
+      <view class="function-grid card-box">
+        <block wx:for="{{academicFunctions}}" wx:key="name">
+          <view class="function-item" bindtap="onFunctionTap" data-path="{{item.path}}" hover-class="hover-opacity">
+            <view class="function-icon">{{item.icon}}</view>
+            <text class="function-text">{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- 今日课表 -->
+      <view class="section-card card-box">
+        <view class="card-header">
+          <text class="card-title">今日课表</text>
+          <navigator url="/pages/academic/schedule/index" class="card-more">全部课表 ></navigator>
+        </view>
+        <view class="timetable-list">
+          <block wx:for="{{timetable}}" wx:key="id">
+            <view class="course-item" hover-class="hover-opacity">
+              <view class="course-time-bar"></view>
+              <view class="course-content">
+                <text class="course-name">{{item.name}}</text>
+                <view class="course-detail">
+                  <text class="detail-icon">🕒</text> {{item.time}}
+                  <text class="detail-icon" style="margin-left: 20rpx;">📍</text> {{item.location}}
+                </view>
+              </view>
+            </view>
+          </block>
+          <view wx:if="{{timetable.length === 0}}" class="empty-state">
+            <text class="empty-icon">☕</text>
+            <text class="empty-text">今天没有课，去图书馆充充电吧~</text>
+          </view>
+        </view>
+      </view>
+
+      <!-- 近期成绩 -->
+      <view class="section-card card-box">
+        <view class="card-header">
+          <text class="card-title">近期成绩</text>
+          <text class="card-more">查看更多 ></text>
+        </view>
+        <view class="score-list">
+          <block wx:for="{{scores}}" wx:key="id">
+            <view class="score-item" hover-class="hover-opacity">
+              <view class="score-info">
+                <text class="score-name">{{item.name}}</text>
+                <text class="score-type">必修</text>
+              </view>
+              <view class="score-value {{item.score >= 90 ? 'score-high' : ''}}">
+                <text>{{item.score}}</text>
+                <text class="score-unit">分</text>
+              </view>
+            </view>
+          </block>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>

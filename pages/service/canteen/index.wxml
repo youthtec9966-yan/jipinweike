@@ -1,0 +1,120 @@
+<view class="container">
+  <!-- Top Banner / Shop Info -->
+  <view class="header">
+    <view class="shop-info">
+      <view class="shop-name">校内第一食堂</view>
+      <view class="shop-notice">公告：今日推出特色盖浇饭，欢迎品尝！</view>
+    </view>
+    <view class="header-bg"></view>
+  </view>
+
+  <view class="content-wrapper">
+    <!-- Left Sidebar: Categories -->
+    <scroll-view class="category-sidebar" scroll-y>
+      <block wx:for="{{categories}}" wx:key="*this">
+        <view class="category-item {{currentCategory === item ? 'active' : ''}}" 
+              bindtap="switchCategory" data-category="{{item}}">
+          <view class="cat-text">{{item}}</view>
+          <view class="active-indicator" wx:if="{{currentCategory === item}}"></view>
+        </view>
+      </block>
+    </scroll-view>
+
+    <!-- Right Side: Dish List -->
+    <scroll-view class="dish-list" scroll-y>
+      <view class="section-title">{{currentCategory}}</view>
+      <block wx:for="{{currentDishes}}" wx:key="id">
+        <view class="dish-card">
+          <image class="dish-img" src="{{item.imageUrl || '/images/default-dish.png'}}" mode="aspectFill"></image>
+          <view class="dish-info">
+            <view class="dish-name">{{item.name}}</view>
+            <view class="dish-desc">{{item.description || '暂无描述'}}</view>
+            <view class="dish-bottom">
+              <view class="dish-price"><text class="currency">￥</text>{{item.price}}</view>
+              <view class="dish-action">
+                <view wx:if="{{cart[item.id] > 0}}" class="btn-minus" bindtap="removeFromCart" data-item="{{item}}">－</view>
+                <view wx:if="{{cart[item.id] > 0}}" class="count">{{cart[item.id]}}</view>
+                <view class="btn-plus" bindtap="addToCart" data-item="{{item}}">＋</view>
+              </view>
+            </view>
+          </view>
+        </view>
+      </block>
+      <view wx:if="{{currentDishes.length === 0}}" class="empty-tip">
+        <image class="empty-img" src="/images/empty.png" mode="widthFix" style="width:100px;opacity:0.3"></image>
+        <view>该分类下暂无菜品</view>
+      </view>
+      <view class="spacer-bottom"></view> <!-- Spacer for cart bar -->
+    </scroll-view>
+  </view>
+
+  <!-- Bottom Cart Bar -->
+  <view class="cart-bar-wrapper">
+    <view class="cart-bar">
+      <view class="cart-icon-container {{totalCount > 0 ? 'active' : ''}}" bindtap="toggleCartDetail">
+        <view class="cart-icon">🛒</view>
+        <view wx:if="{{totalCount > 0}}" class="badge">{{totalCount}}</view>
+      </view>
+      <view class="cart-info">
+        <view class="total-price" wx:if="{{totalCount > 0}}">￥<text class="price-num">{{totalPrice}}</text></view>
+        <view class="total-price empty" wx:else>未选购商品</view>
+        <view class="delivery-tip">另需配送费 ￥0</view>
+      </view>
+      <view class="checkout-btn {{totalCount > 0 ? '' : 'disabled'}}" bindtap="showCheckoutModal">
+        {{totalCount > 0 ? '去结算' : '￥0 起送'}}
+      </view>
+    </view>
+  </view>
+
+  <!-- Checkout Modal -->
+  <view wx:if="{{showCheckout}}" class="modal-mask">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>确认订单</text>
+        <view class="close-btn" bindtap="hideCheckoutModal">✕</view>
+      </view>
+      
+      <scroll-view scroll-y class="order-list">
+        <block wx:for="{{cartItems}}" wx:key="id">
+          <view class="cart-item-row">
+            <view class="row-name">{{item.name}}</view>
+            <view class="row-qty">x{{item.count}}</view>
+            <view class="row-price">￥{{item.price * item.count}}</view>
+          </view>
+        </block>
+      </scroll-view>
+      
+      <view class="divider"></view>
+      <view class="total-row">
+        <text>合计</text>
+        <text class="final-price">￥{{totalPrice}}</text>
+      </view>
+      
+      <view class="form-area">
+        <view class="form-group">
+          <label>姓名</label>
+          <input class="input" placeholder="请填写订餐人姓名" value="{{name}}" bindinput="onInputName" />
+        </view>
+        <view class="form-group">
+          <label>电话</label>
+          <input class="input" placeholder="请填写联系电话" value="{{phone}}" bindinput="onInputPhone" type="number"/>
+        </view>
+        <view class="form-group">
+          <label>取餐时间</label>
+          <picker mode="time" value="{{diningTime}}" start="07:00" end="20:00" bindchange="onTimeChange">
+            <view class="picker input {{diningTime ? '' : 'placeholder'}}">{{diningTime || '选择时间'}}</view>
+          </picker>
+        </view>
+        <view class="form-group">
+          <label>备注</label>
+          <input class="input" placeholder="口味偏好等 (选填)" value="{{remark}}" bindinput="onInputRemark" />
+        </view>
+      </view>
+
+      <view class="modal-footer">
+        <button class="btn-confirm-order" bindtap="submitOrder">立即支付</button>
+      </view>
+    </view>
+  </view>
+
+</view>

@@ -1,0 +1,17 @@
+<view class="container">
+  <view class="evaluation-list">
+    <block wx:for="{{evaluations}}" wx:key="id">
+      <view class="evaluation-card card-box">
+        <view class="card-left">
+          <text class="course-name">{{item.course}}</text>
+          <text class="teacher-name">教师: {{item.teacher}}</text>
+        </view>
+        <view class="card-right">
+          <button class="eval-btn {{item.status === '已评价' ? 'disabled' : ''}}" size="mini" bindtap="onEvaluate" data-id="{{item.id}}">
+            {{item.status}}
+          </button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

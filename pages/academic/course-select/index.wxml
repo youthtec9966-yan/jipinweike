@@ -1,0 +1,20 @@
+<view class="container">
+  <view class="course-list">
+    <block wx:for="{{courses}}" wx:key="id">
+      <view class="course-card card-box">
+        <view class="card-left">
+          <text class="course-name">{{item.name}}</text>
+          <view class="course-info">
+            <text class="credit">学分: {{item.credit}}</text>
+            <text class="teacher">教师: {{item.teacher}}</text>
+          </view>
+        </view>
+        <view class="card-right">
+          <button class="select-btn {{item.selected ? 'selected' : ''}}" size="mini" bindtap="onSelect" data-id="{{item.id}}">
+            {{item.selected ? '已选' : '选课'}}
+          </button>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

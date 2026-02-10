@@ -1,0 +1,61 @@
+<view class="container">
+  <!-- 分类选择 -->
+  <view class="form-group">
+    <text class="label">选择版块</text>
+    <picker bindchange="onTypeChange" value="{{typeIndex}}" range="{{types}}" range-key="name">
+      <view class="picker">
+        {{types[typeIndex].name}} ▼
+      </view>
+    </picker>
+  </view>
+
+  <!-- 论坛子分类 -->
+  <view class="form-group" wx:if="{{types[typeIndex].value === 'forum'}}">
+    <text class="label">话题分类</text>
+    <picker bindchange="onForumCategoryChange" value="{{forumCategoryIndex}}" range="{{forumCategories}}">
+      <view class="picker">
+        {{forumCategories[forumCategoryIndex]}} ▼
+      </view>
+    </picker>
+  </view>
+
+  <!-- 标题 -->
+  <view class="form-group">
+    <text class="label">标题</text>
+    <input class="input" placeholder="请输入标题" value="{{title}}" bindinput="onTitleInput" />
+  </view>
+
+  <!-- 内容 -->
+  <view class="form-group">
+    <text class="label">内容</text>
+    <textarea class="textarea" placeholder="分享你的想法..." value="{{content}}" bindinput="onContentInput" maxlength="500"></textarea>
+  </view>
+
+  <!-- 图片上传 -->
+  <view class="form-group">
+    <text class="label">图片 ({{images.length}}/9)</text>
+    <view class="image-list">
+      <block wx:for="{{images}}" wx:key="*this">
+        <view class="image-item">
+          <image src="{{item}}" mode="aspectFill" bindtap="previewImage" data-src="{{item}}"></image>
+          <view class="delete-btn" bindtap="deleteImage" data-index="{{index}}">×</view>
+        </view>
+      </block>
+      <view class="add-btn" bindtap="chooseImage" wx:if="{{images.length < 9}}">+</view>
+    </view>
+  </view>
+
+  <!-- 价格 (仅二手) -->
+  <view class="form-group" wx:if="{{types[typeIndex].value === 'second_hand'}}">
+    <text class="label">价格</text>
+    <input class="input" type="digit" placeholder="0.00" value="{{price}}" bindinput="onPriceInput" />
+  </view>
+
+  <!-- 联系方式 (二手/失物) -->
+  <view class="form-group" wx:if="{{types[typeIndex].value === 'second_hand' || types[typeIndex].value === 'lost_found' || types[typeIndex].value === 'found'}}">
+    <text class="label">联系方式</text>
+    <input class="input" placeholder="微信号/手机号" value="{{contact}}" bindinput="onContactInput" />
+  </view>
+
+  <button class="submit-btn" bindtap="submitPost" loading="{{submitting}}">发布</button>
+</view>

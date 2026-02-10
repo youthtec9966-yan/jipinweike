@@ -1,0 +1,198 @@
+/* pages/community/index.wxss */
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+  padding-bottom: 40rpx;
+  padding-top: 100rpx; /* Space for fixed tabs */
+}
+
+/* Tab 导航 */
+.tab-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 88rpx;
+  background-color: #fff;
+  display: flex;
+  white-space: nowrap;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.03);
+  z-index: 100;
+}
+
+.tab-item {
+  font-size: 30rpx;
+  color: #666;
+  height: 88rpx;
+  line-height: 88rpx;
+  position: relative;
+  padding: 0 30rpx;
+  flex-shrink: 0;
+}
+
+.tab-item.active {
+  color: #2979ff;
+  font-weight: bold;
+  font-size: 32rpx;
+}
+
+.tab-item.active::after {
+  content: "";
+  position: absolute;
+  bottom: 10rpx;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 40rpx;
+  height: 6rpx;
+  background-color: #2979ff;
+  border-radius: 3rpx;
+}
+
+.post-list {
+  padding-top: 20rpx;
+}
+
+.post-card {
+  padding: 30rpx;
+  margin-bottom: 24rpx;
+}
+
+/* 头部 */
+.post-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 24rpx;
+}
+
+.user-avatar {
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  margin-right: 24rpx;
+  background-color: #f0f0f0;
+  border: 2rpx solid #fff;
+  box-shadow: 0 4rpx 10rpx rgba(0,0,0,0.05);
+}
+
+.user-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.user-name {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 4rpx;
+}
+
+.post-time-ago {
+  font-size: 24rpx;
+  color: #999;
+}
+
+.more-btn {
+  font-size: 40rpx;
+  color: #ccc;
+  padding: 0 10rpx;
+}
+
+/* 内容 */
+.post-content {
+  margin-bottom: 24rpx;
+}
+
+.content-text {
+  font-size: 30rpx;
+  color: #333;
+  line-height: 1.6;
+  text-align: justify;
+}
+
+/* 图片网格 */
+.post-images-grid {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 24rpx;
+  gap: 10rpx; /* 小程序基础库较新版本支持 gap */
+}
+
+/* 兼容低版本 gap 写法 */
+.post-images-grid {
+  /* margin-right: -10rpx; */
+}
+
+.grid-image-wrapper {
+  width: 210rpx; /* (690 - 20 - 20) / 3 approx */
+  height: 210rpx;
+  border-radius: 8rpx;
+  overflow: hidden;
+  /* margin-right: 10rpx; */
+  /* margin-bottom: 10rpx; */
+}
+
+.single-image {
+  width: 400rpx;
+  height: 400rpx;
+}
+
+.post-image {
+  width: 100%;
+  height: 100%;
+  background-color: #f0f0f0;
+}
+
+/* 底部操作 */
+.post-footer {
+  display: flex;
+  justify-content: space-around;
+  border-top: 1rpx solid #f9f9f9;
+  padding-top: 24rpx;
+  margin-top: 10rpx;
+}
+
+.action-btn {
+  display: flex;
+  align-items: center;
+  color: #666;
+}
+
+.action-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+.action-num {
+  font-size: 26rpx;
+}
+
+/* 悬浮按钮 */
+.fab-btn {
+  position: fixed;
+  bottom: 60rpx;
+  right: 40rpx;
+  width: 110rpx;
+  height: 110rpx;
+  background: linear-gradient(135deg, #2979ff, #65a4ff);
+  border-radius: 50%;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 8rpx 20rpx rgba(41, 121, 255, 0.4);
+  z-index: 100;
+  transition: transform 0.1s;
+}
+
+.fab-btn:active {
+  transform: scale(0.95);
+}
+
+.fab-icon {
+  font-size: 60rpx;
+  font-weight: 300;
+  margin-top: -8rpx;
+}

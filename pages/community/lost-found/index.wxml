@@ -1,0 +1,25 @@
+<view class="container">
+  <view class="list">
+    <block wx:for="{{items}}" wx:key="id">
+      <view class="item-card card-box" bindtap="onItemTap" data-id="{{item.id}}">
+        <view class="card-header">
+          <text class="tag {{item.type === 'lost' ? 'tag-lost' : 'tag-found'}}">{{item.type === 'lost' ? '寻物' : '招领'}}</text>
+          <text class="time">{{item.time}}</text>
+        </view>
+        <view class="card-body">
+          <text class="title">{{item.title}}</text>
+          <text class="desc">{{item.desc}}</text>
+        </view>
+        <view class="card-footer">
+          <text class="contact">联系方式: {{item.contact}}</text>
+          <button class="contact-btn" size="mini">联系TA</button>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮发布 -->
+  <view class="fab-btn" bindtap="onPost" hover-class="hover-opacity">
+    <text class="fab-icon">📢</text>
+  </view>
+</view>

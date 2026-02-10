@@ -1,0 +1,22 @@
+<view class="container">
+  <view class="search-bar">
+    <input class="search-input" placeholder="搜索社团" confirm-type="search" />
+  </view>
+  
+  <view class="club-list">
+    <view class="club-item" wx:for="{{clubList}}" wx:key="id" bindtap="onClubTap" data-id="{{item.id}}">
+      <image class="club-logo" src="{{item.logo}}" mode="aspectFill"></image>
+      <view class="club-info">
+        <view class="club-header">
+          <text class="club-name">{{item.name}}</text>
+          <text class="club-category">{{item.category}}</text>
+        </view>
+        <view class="club-desc">{{item.desc}}</view>
+        <view class="club-footer">
+          <text class="club-members">{{item.memberCount}} 人已加入</text>
+          <button class="join-btn" catchtap="onJoinTap" data-name="{{item.name}}">申请加入</button>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>

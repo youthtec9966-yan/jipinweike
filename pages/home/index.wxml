@@ -1,0 +1,121 @@
+<view class="container">
+  <!-- 轮播图区域 -->
+  <view class="swiper-container">
+    <swiper class="banner-swiper" indicator-dots="true" autoplay="true" interval="5000" duration="500" indicator-color="rgba(255,255,255,0.5)" indicator-active-color="#fff" circular>
+      <block wx:for="{{banners}}" wx:key="id">
+        <swiper-item bindtap="onBannerTap" data-index="{{index}}">
+          <image src="{{item.imageUrl}}" class="banner-image" mode="aspectFill"></image>
+        </swiper-item>
+      </block>
+    </swiper>
+  </view>
+
+  <!-- 快捷入口 (金刚区) -->
+  <view class="shortcut-grid card-box">
+    <block wx:for="{{shortcuts}}" wx:key="name">
+      <view class="shortcut-item" bindtap="onShortcutTap" data-path="{{item.path}}" hover-class="hover-opacity">
+        <view class="shortcut-icon">{{item.icon}}</view>
+        <text class="shortcut-text">{{item.name}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 校园公告 -->
+  <view class="announcement-bar card-box">
+    <view class="announcement-label">
+      <text class="label-icon">🔔</text>
+      <text class="label-text">公告</text>
+    </view>
+    <swiper class="announcement-swiper" autoplay="true" vertical="true" interval="3000" circular>
+      <block wx:for="{{announcements}}" wx:key="id">
+        <swiper-item class="announcement-swiper-item" bindtap="onAnnouncementTap" data-id="{{item.id}}">
+          <text class="announcement-text ellipsis">{{item.title}}</text>
+        </swiper-item>
+      </block>
+    </swiper>
+    <text class="arrow">></text>
+  </view>
+
+  <!-- 院系风采 -->
+  <view class="section-container">
+    <view class="section-header">
+      <text class="section-title">院系风采</text>
+    </view>
+    <scroll-view class="department-scroll" scroll-x="true" enable-flex="true">
+      <block wx:for="{{departments}}" wx:key="id">
+        <view class="department-card" style="background-color: {{item.color}}" bindtap="onDepartmentTap" data-id="{{item.id}}">
+          <view class="dept-icon">{{item.icon}}</view>
+          <view class="dept-info">
+            <text class="dept-name">{{item.name}}</text>
+            <text class="dept-desc">{{item.desc}}</text>
+          </view>
+        </view>
+      </block>
+    </scroll-view>
+  </view>
+
+  <!-- 资讯列表 -->
+  <view class="news-section">
+    <view class="section-header">
+      <text class="section-title">校园资讯</text>
+      <text class="section-more">查看更多</text>
+    </view>
+    <view class="news-list">
+      <block wx:for="{{newsList}}" wx:key="id">
+        <view class="news-card card-box" bindtap="onNewsTap" data-id="{{item.id}}" hover-class="hover-opacity">
+          <view class="news-info">
+            <text class="news-title ellipsis-2">{{item.title}}</text>
+            <view class="news-meta">
+              <text>{{item.date}}</text>
+              <text class="news-view">👁 {{item.viewCount}}</text>
+            </view>
+          </view>
+          <image class="news-cover" src="{{item.coverUrl}}" mode="aspectFill"></image>
+        </view>
+      </block>
+    </view>
+  </view>
+
+  <!-- AI数字人悬浮球 -->
+  <view class="ai-avatar-float" bindtap="toggleChat">
+    <view class="avatar-pulse"></view>
+    <view class="avatar-img">👩‍🎓</view>
+    <view class="avatar-label">AI助手</view>
+  </view>
+
+  <!-- AI聊天弹窗 -->
+  <view class="chat-modal {{showChat ? 'show' : ''}}" catchtouchmove="preventTouchMove">
+    <view class="chat-mask" bindtap="toggleChat"></view>
+    <view class="chat-container">
+      <view class="chat-header">
+        <text class="chat-title">校园AI助手</text>
+        <view class="close-btn" bindtap="toggleChat">×</view>
+      </view>
+      <scroll-view class="chat-content" scroll-y="true" scroll-into-view="{{scrollIntoView}}">
+        <block wx:for="{{chatMessages}}" wx:key="index">
+          <view class="message-item {{item.role === 'user' ? 'user-msg' : 'ai-msg'}}" id="msg-{{index}}">
+            <view class="msg-avatar" wx:if="{{item.role === 'ai'}}">👩‍🎓</view>
+            <view class="msg-bubble">
+              <text user-select="true">{{item.content}}</text>
+            </view>
+            <view class="msg-avatar" wx:if="{{item.role === 'user'}}">👤</view>
+          </view>
+        </block>
+        <view class="loading-msg" wx:if="{{isAiTyping}}">
+          <view class="dot"></view><view class="dot"></view><view class="dot"></view>
+        </view>
+      </scroll-view>
+      <view class="floatmax">
+        <view class="kkk">本服务为AI生成内容，结果仅供参考</view>
+        <view class="chat-footer">
+        <input class="chat-input" placeholder="问问我关于校园的事..." value="{{inputVal}}" bindinput="onChatInput" bindconfirm="sendChatMessage" confirm-type="send"/>
+        <view class="send-btn" bindtap="sendChatMessage" disabled="{{!inputVal}}">
+            <image src="/images/play.png" class="buttonplay" mode=""></image>
+        </view>
+      </view>
+      
+      </view>
+     
+    </view>
+  </view>
+</view>

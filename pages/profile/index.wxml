@@ -1,0 +1,151 @@
+<view class="container">
+  <!-- 顶部背景装饰 -->
+  <view class="header-bg">
+    <view class="circle-1"></view>
+    <view class="circle-2"></view>
+  </view>
+
+  <!-- 主体内容区 -->
+  <view class="content-wrapper">
+    <!-- 用户信息卡片 -->
+    <view class="user-card" bindtap="{{!isLogin ? 'doLogin' : ''}}">
+      <view class="user-info-row">
+        <block wx:if="{{isLogin}}">
+          <image class="avatar" src="{{userInfo.avatarUrl}}" mode="aspectFill"></image>
+          <view class="info-col">
+            <view class="name-box">
+              <text class="nickname">{{userInfo.nickName}}</text>
+              <image wx:if="{{userInfo.studentId}}" class="vip-icon" src="/images/verified.png" mode="widthFix" style="display:none;"></image> <!-- 暂无图片，用文字代替 -->
+              <view class="verified-badge" wx:if="{{userInfo.studentId}}">
+                <text>已认证</text>
+              </view>
+              <view class="unverified-badge" wx:else>
+                <text>未认证</text>
+              </view>
+            </view>
+            <view class="school-info">
+              <text>{{userInfo.department || '完善信息解锁更多功能'}}</text>
+            </view>
+          </view>
+          <view class="edit-icon" catchtap="onMenuTap" data-id="verify" data-path="/pages/profile/verify/index">
+            <text>⚙️</text> <!-- 这里用设置图标或编辑图标 -->
+          </view>
+        </block>
+        <block wx:else>
+          <view class="avatar-placeholder">
+            <text>👤</text>
+          </view>
+          <view class="info-col">
+            <text class="login-title">点击登录/注册</text>
+            <text class="login-desc">登录体验更多精彩校园生活</text>
+          </view>
+          <text class="arrow">></text>
+        </block>
+      </view>
+
+      <!-- 数据统计 (登录后显示) -->
+      <view class="stats-row" wx:if="{{isLogin}}">
+        <view class="stat-item" hover-class="hover-opacity">
+          <text class="stat-num">{{stats.postCount}}</text>
+          <text class="stat-label">发布</text>
+        </view>
+        <view class="stat-line"></view>
+        <view class="stat-item" hover-class="hover-opacity">
+          <text class="stat-num">{{stats.likeCount}}</text>
+          <text class="stat-label">获赞</text>
+        </view>
+        <view class="stat-line"></view>
+        <view class="stat-item" hover-class="hover-opacity">
+          <text class="stat-num">{{stats.activityCount}}</text>
+          <text class="stat-label">活动</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 常用功能 (宫格导航) -->
+    <view class="section-card">
+      <view class="section-title">我的社区</view>
+      <view class="grid-nav">
+        <view class="grid-item" bindtap="onMenuTap" data-path="/pages/profile/my-posts/index">
+          <view class="grid-icon-box color-blue">
+            <text class="grid-icon">📝</text>
+          </view>
+          <text class="grid-text">我的发布</text>
+        </view>
+        <view class="grid-item" bindtap="onMenuTap" data-path="/pages/profile/my-activities/index">
+          <view class="grid-icon-box color-orange">
+            <text class="grid-icon">🚩</text>
+          </view>
+          <text class="grid-text">我的活动</text>
+        </view>
+        <view class="grid-item" bindtap="onMenuTap" data-path="/pages/profile/collections/index">
+          <view class="grid-icon-box color-yellow">
+            <text class="grid-icon">⭐</text>
+          </view>
+          <text class="grid-text">我的收藏</text>
+        </view>
+        <view class="grid-item" bindtap="onMenuTap" data-path="/pages/profile/verify/index">
+          <view class="grid-icon-box color-green">
+            <text class="grid-icon">🎓</text>
+          </view>
+          <text class="grid-text">身份认证</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 更多服务 (列表导航) -->
+    <view class="section-card">
+      <view class="menu-list">
+        <view class="menu-item" bindtap="onMenuTap" data-path="/pages/profile/feedback/index">
+          <view class="menu-left">
+            <text class="menu-icon-sm">✉️</text>
+            <text class="menu-text">意见反馈</text>
+          </view>
+          <text class="menu-arrow">></text>
+        </view>
+        <view class="menu-item" bindtap="onMenuTap" data-path="/pages/profile/about/index">
+          <view class="menu-left">
+            <text class="menu-icon-sm">ℹ️</text>
+            <text class="menu-text">关于我们</text>
+          </view>
+          <text class="menu-arrow">></text>
+        </view>
+        <view class="menu-item" bindtap="onMenuTap" data-path="/pages/profile/settings/index">
+          <view class="menu-left">
+            <text class="menu-icon-sm">⚙️</text>
+            <text class="menu-text">设置</text>
+          </view>
+          <text class="menu-arrow">></text>
+        </view>
+      </view>
+    </view>
+
+    <view class="footer-version">
+      <text>Campus Life v1.0.0</text>
+    </view>
+  </view>
+
+  <!-- 登录弹窗 (保持不变) -->
+  <view class="login-modal" wx:if="{{showLoginModal}}">
+    <view class="modal-content">
+      <view class="modal-header">
+        <text>欢迎登录</text>
+        <view class="close-btn" bindtap="closeLoginModal">×</view>
+      </view>
+      <view class="modal-body">
+        <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+          <image class="avatar-img" src="{{tempAvatarUrl || 'https://mmbiz.qpic.cn/mmbiz/icTdbqWNOwBHJrRn51kJ8xHOcT1q3ibDDIgXSHAiainc47j3129487391.svg'}}"></image>
+          <view class="camera-icon">📷</view>
+        </button>
+        <text class="tip-text">点击上方头像可更换</text>
+        
+        <view class="input-group">
+          <text class="label">昵称</text>
+          <input type="nickname" class="input" placeholder="请输入昵称" value="{{tempNickname}}" bind:change="onNicknameChange" />
+        </view>
+
+        <button class="submit-btn" bindtap="submitLogin">确认登录</button>
+      </view>
+    </view>
+  </view>
+</view>

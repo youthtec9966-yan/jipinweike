@@ -1,0 +1,65 @@
+<view class="container">
+  <block wx:if="{{!isLogin}}">
+    <view class="login-container">
+      <view class="login-header">
+        <view class="logo-circle">🍜</view>
+        <text class="app-name">校园生活助手</text>
+        <text class="app-slogan">更便捷的校园服务</text>
+      </view>
+      <button class="login-btn" hover-class="hover-opacity" bindtap="doLogin">
+        <text class="wechat-icon">💬</text> 微信一键登录
+      </button>
+    </view>
+  </block>
+
+  <block wx:else>
+    <!-- 服务分类 -->
+    <view class="service-grid-wrapper">
+      <view class="section-title-area">
+        <text class="section-main-title">服务大厅</text>
+        <text class="section-sub-title">Service Hall</text>
+      </view>
+      <view class="grid-container card-box">
+        <block wx:for="{{services}}" wx:key="id">
+          <view class="grid-item" bindtap="onServiceTap" data-item="{{item}}" hover-class="hover-opacity">
+            <view class="grid-icon-wrapper" style="background-color: {{index % 2 === 0 ? '#e6f0ff' : '#fff2e6'}}">
+              <text class="grid-icon">{{item.icon}}</text>
+            </view>
+            <text class="grid-name">{{item.name}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+
+    <!-- 最近记录 -->
+    <view class="order-section">
+      <view class="section-title-area">
+        <text class="section-main-title">最近记录</text>
+        <text class="section-sub-title">Recent Records</text>
+      </view>
+      <view class="order-list">
+        <block wx:for="{{recentOrders}}" wx:key="id">
+          <view class="order-card card-box" hover-class="hover-opacity">
+            <view class="order-header">
+              <view class="order-type-area">
+                <view class="order-icon-small">📄</view>
+                <text class="order-type">{{item.type}}</text>
+              </view>
+              <text class="order-status-tag {{item.status === '已完成' ? 'status-done' : 'status-processing'}}">{{item.status}}</text>
+            </view>
+            <view class="order-body">
+              <view class="order-info-left">
+                <text class="order-time">{{item.time}}</text>
+                <text wx:if="{{item.desc}}" class="order-desc ellipsis">{{item.desc}}</text>
+              </view>
+              <view wx:if="{{item.amount}}" class="order-amount-area">
+                <text class="amount-symbol">￥</text>
+                <text class="amount-value">{{item.amount}}</text>
+              </view>
+            </view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </block>
+</view>

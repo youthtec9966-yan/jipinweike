@@ -1,0 +1,62 @@
+<view class="container">
+  <!-- 顶部 Tab 导航 -->
+  <scroll-view class="tab-header" scroll-x enable-flex>
+    <block wx:for="{{tabs}}" wx:key="id">
+      <view class="tab-item {{activeTab === index ? 'active' : ''}}" bindtap="onTabClick" data-index="{{index}}">
+        <text>{{item.name}}</text>
+      </view>
+    </block>
+  </scroll-view>
+
+  <!-- 社区动态流 -->
+  <view class="post-list">
+    <block wx:for="{{posts}}" wx:key="id">
+      <view class="post-card card-box" bindtap="onPostTap" data-id="{{item.id}}" hover-class="hover-opacity">
+        <!-- 头部信息 -->
+        <view class="post-header">
+          <image class="user-avatar" src="{{item.authorAvatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2NjY2NjYyIvPjwvc3ZnPg=='}}" mode="aspectFill"></image>
+          <view class="user-info">
+            <text class="user-name">{{item.authorName || '匿名用户'}}</text>
+            <text class="post-time-ago">{{item.createdAt}}</text> <!-- 实际应处理为“xx分钟前” -->
+          </view>
+          <view class="more-btn">···</view>
+        </view>
+
+        <!-- 内容 -->
+        <view class="post-content">
+          <text class="content-text">{{item.content}}</text>
+        </view>
+
+        <!-- 图片九宫格 -->
+        <view class="post-images-grid" wx:if="{{item.images && item.images.length > 0}}">
+          <block wx:for="{{item.images}}" wx:for-item="img" wx:key="*this">
+            <view class="grid-image-wrapper {{item.images.length === 1 ? 'single-image' : ''}}">
+              <image class="post-image" src="{{img}}" mode="aspectFill"></image>
+            </view>
+          </block>
+        </view>
+
+        <!-- 底部操作栏 -->
+        <view class="post-footer">
+          <view class="action-btn">
+            <text class="action-icon">👍</text>
+            <text class="action-num">{{item.likeCount || 0}}</text>
+          </view>
+          <view class="action-btn">
+            <text class="action-icon">💬</text>
+            <text class="action-num">{{item.commentCount || 0}}</text>
+          </view>
+          <view class="action-btn">
+            <text class="action-icon">🔗</text>
+            <text class="action-num">分享</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮发布按钮 -->
+  <view class="fab-btn" bindtap="onFabTap" hover-class="hover-opacity">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

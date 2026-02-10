@@ -1,0 +1,39 @@
+<view class="container">
+  <!-- 顶部星期 -->
+  <view class="header">
+    <view class="header-cell" style="width: 64rpx; flex: none;"></view> <!-- 占位符 -->
+    <block wx:for="{{weekDays}}" wx:key="index">
+      <view class="header-cell {{item.isToday ? 'today' : ''}}">
+        <text class="day-text">{{item.day}}</text>
+        <text class="date-text">{{item.date}}</text>
+      </view>
+    </block>
+  </view>
+
+  <!-- 课表主体 -->
+  <scroll-view class="schedule-body" scroll-y enable-back-to-top>
+    <view style="display: flex; min-height: 1680rpx;"> <!-- 14 hours * 120rpx -->
+      <!-- 左侧时间轴 -->
+      <view class="time-axis">
+        <block wx:for="{{times}}" wx:key="index">
+          <view class="time-slot">
+            <text class="time-text">{{item}}</text>
+          </view>
+        </block>
+      </view>
+
+      <!-- 课程区域 -->
+      <view class="course-grid">
+        <block wx:for="{{courseList}}" wx:key="id">
+          <view class="course-item" 
+                style="left: {{(item.dayOfWeek - 1) * 14.28}}%; top: {{item.top}}rpx; height: {{item.height}}rpx; background-color: {{item.color}};"
+                bindtap="onCourseTap" 
+                data-id="{{item.id}}">
+            <text class="course-name">{{item.name}}</text>
+            <text class="course-loc">@{{item.location}}</text>
+          </view>
+        </block>
+      </view>
+    </view>
+  </scroll-view>
+</view>

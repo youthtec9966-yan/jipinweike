@@ -1,0 +1,25 @@
+<view class="container">
+  <block wx:if="{{loading}}">
+    <view class="loading">加载中...</view>
+  </block>
+  <block wx:elif="{{news}}">
+    <view class="article">
+      <view class="title">{{news.title}}</view>
+      <view class="meta">
+        <text class="date">{{news.date}}</text>
+        <text class="view-count">阅读 {{news.readCount || 0}}</text>
+      </view>
+      
+      <image wx:if="{{news.cover}}" class="cover" src="{{news.cover}}" mode="widthFix"></image>
+      
+      <view class="content">
+        <text user-select="true">{{news.content}}</text>
+      </view>
+    </view>
+  </block>
+  <block wx:else>
+    <view class="empty">
+      <text>内容不存在或已被删除</text>
+    </view>
+  </block>
+</view>

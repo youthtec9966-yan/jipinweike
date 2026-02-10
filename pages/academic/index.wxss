@@ -1,0 +1,276 @@
+/* pages/academic/index.wxss */
+.container {
+  width: 100%;
+  box-sizing: border-box;
+  background-color: #f7f8fa;
+  min-height: 100vh;
+}
+
+/* 登录页样式 */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #fff;
+  padding: 0 60rpx;
+}
+
+.login-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 120rpx;
+}
+
+.logo-circle {
+  width: 160rpx;
+  height: 160rpx;
+  background: linear-gradient(135deg, #2979ff, #65a4ff);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 80rpx;
+  color: #fff;
+  margin-bottom: 40rpx;
+  box-shadow: 0 10rpx 30rpx rgba(41, 121, 255, 0.3);
+}
+
+.app-name {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.app-slogan {
+  font-size: 28rpx;
+  color: #999;
+}
+
+.login-btn {
+  width: 100%;
+  height: 96rpx;
+  background-color: #07c160;
+  color: #fff;
+  border-radius: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32rpx;
+  font-weight: bold;
+  box-shadow: 0 10rpx 20rpx rgba(7, 193, 96, 0.2);
+}
+
+.wechat-icon {
+  margin-right: 16rpx;
+  font-size: 36rpx;
+}
+
+.login-agreement {
+  font-size: 24rpx;
+  color: #ccc;
+  margin-top: 40rpx;
+}
+
+/* 已登录样式 */
+.academic-header {
+  height: 300rpx;
+  background: linear-gradient(135deg, #2979ff, #0052cc);
+  padding: 60rpx 40rpx;
+  box-sizing: border-box;
+}
+
+.header-content {
+  color: #fff;
+}
+
+.welcome-text {
+  font-size: 40rpx;
+  font-weight: bold;
+  display: block;
+  margin-bottom: 10rpx;
+}
+
+.date-text {
+  font-size: 26rpx;
+  opacity: 0.8;
+}
+
+.content-wrapper {
+  margin-top: -100rpx;
+  padding: 0 24rpx 40rpx;
+}
+
+/* 功能宫格 */
+.function-grid {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 30rpx 10rpx;
+}
+
+.function-item {
+  width: 20%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 10rpx;
+}
+
+.function-icon {
+  width: 80rpx;
+  height: 80rpx;
+  background-color: #f0f7ff;
+  border-radius: 24rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 40rpx;
+  margin-bottom: 12rpx;
+  color: #2979ff;
+}
+
+.function-text {
+  font-size: 24rpx;
+  color: #333;
+}
+
+.section-card {
+  margin: 0 0 30rpx 0; /* Override global margin */
+  padding: 0; /* Reset padding for header */
+  overflow: hidden;
+}
+
+.card-header {
+  padding: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  border-left: 8rpx solid #2979ff;
+  padding-left: 20rpx;
+}
+
+.card-more {
+  font-size: 26rpx;
+  color: #999;
+}
+
+/* 课表样式 */
+.timetable-list {
+  padding: 10rpx 30rpx 30rpx;
+}
+
+.course-item {
+  display: flex;
+  margin-top: 24rpx;
+  background-color: #f9fbff;
+  border-radius: 16rpx;
+  padding: 24rpx;
+  border: 1rpx solid #e6f0ff;
+}
+
+.course-time-bar {
+  width: 8rpx;
+  background-color: #2979ff;
+  border-radius: 4rpx;
+  margin-right: 24rpx;
+}
+
+.course-content {
+  flex: 1;
+}
+
+.course-name {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: block;
+  margin-bottom: 12rpx;
+}
+
+.course-detail {
+  font-size: 24rpx;
+  color: #666;
+  display: flex;
+  align-items: center;
+}
+
+.detail-icon {
+  margin-right: 8rpx;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60rpx 0;
+  color: #999;
+  font-size: 28rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon {
+  font-size: 60rpx;
+  margin-bottom: 20rpx;
+}
+
+/* 成绩样式 */
+.score-list {
+  padding: 0 30rpx;
+}
+
+.score-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30rpx 0;
+  border-bottom: 1rpx solid #f5f5f5;
+}
+
+.score-item:last-child {
+  border-bottom: none;
+}
+
+.score-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.score-name {
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+}
+
+.score-type {
+  font-size: 22rpx;
+  color: #fff;
+  background-color: #ccc;
+  padding: 2rpx 10rpx;
+  border-radius: 6rpx;
+  align-self: flex-start;
+}
+
+.score-value {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.score-high {
+  color: #2979ff;
+}
+
+.score-unit {
+  font-size: 24rpx;
+  font-weight: normal;
+}

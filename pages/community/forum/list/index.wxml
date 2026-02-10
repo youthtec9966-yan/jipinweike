@@ -1,0 +1,40 @@
+<view class="container">
+  <view class="post-list">
+    <block wx:for="{{posts}}" wx:key="id">
+      <view class="post-card card-box" bindtap="onPostTap" data-id="{{item.id}}">
+        <!-- Header -->
+        <view class="post-header">
+           <image class="user-avatar" src="{{item.authorAvatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2NjY2NjYyIvPjwvc3ZnPg=='}}" mode="aspectFill"></image>
+           <view class="user-info">
+             <text class="user-name">{{item.authorName || '匿名用户'}}</text>
+             <text class="post-time-ago">{{item.createdAt}}</text>
+           </view>
+        </view>
+        <!-- Content -->
+        <view class="post-content">
+          <text class="content-text">{{item.content}}</text>
+        </view>
+        <!-- Images -->
+        <view class="post-images-grid" wx:if="{{item.images && item.images.length > 0}}">
+          <block wx:for="{{item.images}}" wx:for-item="img" wx:key="*this">
+             <view class="grid-image-wrapper">
+               <image class="post-image" src="{{img}}" mode="aspectFill"></image>
+             </view>
+          </block>
+        </view>
+        <!-- Footer -->
+        <view class="post-footer">
+          <view class="action-btn"><text>👍 {{item.likeCount || 0}}</text></view>
+          <view class="action-btn"><text>💬 {{item.commentCount || 0}}</text></view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{posts.length === 0}}" class="empty-state">
+      <text>暂无帖子，快来发布吧！</text>
+    </view>
+  </view>
+  <!-- Fab Button -->
+  <view class="fab-btn" bindtap="onFabTap">
+    <text class="fab-icon">+</text>
+  </view>
+</view>

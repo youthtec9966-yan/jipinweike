@@ -1,0 +1,46 @@
+<view class="container" wx:if="{{post}}">
+  <view class="post-header">
+    <image class="user-avatar" src="{{post.authorAvatar || 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMDAgMTAwIj48Y2lyY2xlIGN4PSI1MCIgY3k9IjUwIiByPSI1MCIgZmlsbD0iI2NjY2NjYyIvPjwvc3ZnPg=='}}" mode="aspectFill"></image>
+    <view class="user-info">
+      <text class="user-name">{{post.authorName || '匿名用户'}}</text>
+      <text class="post-time">{{post.createdAt}}</text>
+    </view>
+    <view class="view-count">浏览 {{post.viewCount}}</view>
+  </view>
+
+  <view class="post-content">
+    <text class="title">{{post.title}}</text>
+    <text class="content">{{post.content}}</text>
+  </view>
+
+  <view class="post-images" wx:if="{{post.images && post.images.length > 0}}">
+    <block wx:for="{{post.images}}" wx:key="*this">
+      <image class="post-image" src="{{item}}" mode="widthFix" bindtap="previewImage" data-src="{{item}}"></image>
+    </block>
+  </view>
+
+  <view class="post-info-list">
+    <view class="info-item" wx:if="{{post.price}}">
+      <text class="label">价格</text>
+      <text class="value price">¥{{post.price}}</text>
+    </view>
+    <view class="info-item" wx:if="{{post.contact}}">
+      <text class="label">联系方式</text>
+      <text class="value" bindtap="copyContact" data-contact="{{post.contact}}">{{post.contact}} (点击复制)</text>
+    </view>
+  </view>
+
+  <view class="action-bar">
+    <view class="action-btn" bindtap="onLike">
+      <text class="icon">👍</text>
+      <text>{{post.likeCount || 0}}</text>
+    </view>
+    <button class="action-btn share-btn" open-type="share">
+      <text class="icon">🔗</text>
+      <text>分享</text>
+    </button>
+  </view>
+</view>
+<view class="loading" wx:else>
+  <text>加载中...</text>
+</view>

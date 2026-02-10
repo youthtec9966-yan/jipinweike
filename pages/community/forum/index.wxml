@@ -1,0 +1,13 @@
+<view class="container">
+  <view class="forum-list">
+    <view class="forum-item" wx:for="{{categories}}" wx:key="id" bindtap="onCategoryTap" data-name="{{item.name}}">
+      <view class="forum-icon">{{item.icon}}</view>
+      <view class="forum-info">
+        <view class="forum-name">{{item.name}}</view>
+        <view class="forum-desc">{{item.desc}}</view>
+      </view>
+      <view class="forum-count">{{item.count}} 贴</view>
+      <view class="arrow">></view>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,12 @@
+/* Reuse global styles */
+@import "/pages/community/index.wxss";
+
+.container {
+  padding-top: 20rpx; /* Override padding-top since no tabs */
+}
+
+.empty-state {
+  text-align: center;
+  padding: 100rpx 0;
+  color: #999;
+}

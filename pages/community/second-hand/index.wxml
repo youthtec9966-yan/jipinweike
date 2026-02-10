@@ -1,0 +1,26 @@
+<view class="container">
+  <!-- 瀑布流布局 -->
+  <view class="item-list">
+    <block wx:for="{{items}}" wx:key="id">
+      <view class="item-card card-box" bindtap="onItemTap" data-id="{{item.id}}" hover-class="hover-opacity">
+        <image class="item-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="item-info">
+          <text class="item-title ellipsis-2">{{item.title}}</text>
+          <view class="price-row">
+            <text class="price-symbol">￥</text>
+            <text class="price-num">{{item.price}}</text>
+          </view>
+          <view class="seller-row">
+            <text class="seller-name">{{item.seller}}</text>
+            <text class="tag">{{item.tag}}</text>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 悬浮发布 -->
+  <view class="fab-btn" bindtap="onPost" hover-class="hover-opacity">
+    <text class="fab-icon">📷</text>
+  </view>
+</view>

@@ -1,0 +1,133 @@
+/* pages/academic/schedule/index.wxss */
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #fff;
+}
+
+/* 顶部星期栏 */
+.header {
+  display: flex;
+  background-color: #f8f8f8;
+  border-bottom: 1rpx solid #e0e0e0;
+  height: 96rpx;
+  align-items: center;
+}
+
+.header-cell {
+  flex: 1;
+  text-align: center;
+  font-size: 26rpx;
+  color: #333;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.day-text {
+  font-weight: bold;
+  margin-bottom: 6rpx;
+}
+
+.date-text {
+  font-size: 22rpx;
+  color: #999;
+}
+
+.today {
+  color: #2979ff;
+}
+
+.today .day-text {
+  color: #2979ff;
+}
+
+.today .date-text {
+  background-color: #2979ff;
+  color: #fff;
+  border-radius: 10rpx;
+  padding: 4rpx 10rpx;
+}
+
+/* 课表主体 */
+.schedule-body {
+  flex: 1;
+  display: flex;
+  position: relative;
+  overflow-y: scroll;
+ 
+}
+
+/* 左侧时间轴 */
+.time-axis {
+  width: 64rpx;
+  background-color: #f9f9f9;
+  border-right: 1rpx solid #eee;
+  display: flex;
+  flex-direction: column;
+  padding-top: 10px;
+}
+
+.time-slot {
+  height: 120rpx; /* 每小时高度 120rpx */
+  text-align: center;
+  font-size: 22rpx;
+  color: #999;
+  position: relative;
+  border-bottom: 1rpx solid #f0f0f0;
+
+}
+
+.time-text {
+  position: absolute;
+  top: -12rpx;
+  left: 0;
+  width: 100%;
+  text-align: center;
+}
+
+/* 课程网格 */
+.course-grid {
+  flex: 1;
+  position: relative;
+  background-size: 100% 120rpx; /* 对应每小时高度 */
+  background-image: linear-gradient(to bottom, #f0f0f0 1rpx, transparent 1rpx);
+ margin-top: 10px;
+}
+
+.course-item {
+  position: absolute;
+  width: calc(100% / 7 - 4rpx);
+  margin: 0 2rpx;
+  border-radius: 12rpx;
+  padding: 10rpx 8rpx;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.12);
+  opacity: 0.96;
+}
+
+.course-name {
+  font-size: 22rpx;
+  font-weight: bold;
+  color: rgb(240, 240, 240);
+  text-align: center;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  line-height: 1.25;
+}
+
+.course-loc {
+  font-size: 20rpx;
+  color: rgba(1, 61, 26, 0.9);
+  margin-top: 6rpx;
+  text-align: center;
+}

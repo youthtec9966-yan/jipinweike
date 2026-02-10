@@ -1,0 +1,26 @@
+<view class="container">
+  <!-- 搜索栏 -->
+  <view class="search-bar card-box">
+    <input class="search-input" placeholder="搜索馆藏书籍" confirm-type="search" bindconfirm="onSearch" />
+    <view class="search-icon" bindtap="onSearch">🔍</view>
+  </view>
+
+  <!-- 当前借阅 -->
+  <view class="section-title">当前借阅</view>
+  <view class="book-list">
+    <block wx:for="{{books}}" wx:key="id">
+      <view class="book-card card-box">
+        <image class="book-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="book-info">
+          <text class="book-title">{{item.title}}</text>
+          <text class="book-author">{{item.author}}</text>
+          <view class="book-meta">
+            <text class="return-date">应还: {{item.returnDate}}</text>
+            <text class="days-left {{item.daysLeft < 7 ? 'urgent' : ''}}">剩 {{item.daysLeft}} 天</text>
+          </view>
+        </view>
+        <button class="renew-btn" size="mini">续借</button>
+      </view>
+    </block>
+  </view>
+</view>

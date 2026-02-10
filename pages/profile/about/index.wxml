@@ -1,0 +1,16 @@
+<view class="container">
+  <view class="logo-area">
+    <image class="logo" src="/images/logo.png" mode="aspectFit"></image> <!-- 假设有logo，没有就只显示文字 -->
+    <text class="app-name">Campus Life</text>
+    <text class="version">Version 1.0.0</text>
+  </view>
+  
+  <view class="content">
+    <text>Campus Life 是一款致力于服务校园生活的微信小程序，为您提供便捷的教务查询、丰富的社区互动以及贴心的生活服务。</text>
+    <text>\n如有任何问题或建议，欢迎通过“意见反馈”告诉我们。</text>
+  </view>
+
+  <view class="footer">
+    <text>Copyright © 2026 Campus Life Team</text>
+  </view>
+</view>

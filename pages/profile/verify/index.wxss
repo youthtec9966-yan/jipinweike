@@ -1,0 +1,71 @@
+.container {
+  min-height: 100vh;
+  background-color: #f7f8fa;
+  padding: 40rpx;
+  box-sizing: border-box;
+}
+
+.header-tip {
+  margin-bottom: 40rpx;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 16rpx;
+}
+
+.desc {
+  font-size: 26rpx;
+  color: #999;
+}
+
+.form-card {
+  background: #fff;
+  border-radius: 20rpx;
+  padding: 0 30rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  margin-bottom: 60rpx;
+}
+
+.form-item {
+  display: flex;
+  align-items: center;
+  padding: 30rpx 0;
+}
+
+.label {
+  width: 160rpx;
+  font-size: 30rpx;
+  color: #333;
+  font-weight: bold;
+}
+
+.input {
+  flex: 1;
+  font-size: 30rpx;
+  color: #333;
+}
+
+.divider {
+  height: 1rpx;
+  background: #f5f5f5;
+}
+
+.submit-btn {
+  background: linear-gradient(135deg, #2979ff, #0052cc);
+  color: #fff;
+  border-radius: 50rpx;
+  font-weight: bold;
+  box-shadow: 0 10rpx 20rpx rgba(41, 121, 255, 0.3);
+}
+
+.tips {
+  margin-top: 40rpx;
+  text-align: center;
+  font-size: 24rpx;
+  color: #ccc;
+}

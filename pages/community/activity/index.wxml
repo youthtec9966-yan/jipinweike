@@ -1,0 +1,28 @@
+<view class="container">
+  <view class="activity-list">
+    <block wx:for="{{activities}}" wx:key="id">
+      <view class="activity-card card-box">
+        <image class="activity-cover" src="{{item.cover}}" mode="aspectFill"></image>
+        <view class="activity-info">
+          <text class="activity-title">{{item.title}}</text>
+          <view class="info-row">
+            <text class="icon">🕒</text>
+            <text>{{item.time}}</text>
+          </view>
+          <view class="info-row">
+            <text class="icon">📍</text>
+            <text>{{item.location}}</text>
+          </view>
+          <view class="info-row">
+            <text class="icon">🏢</text>
+            <text>{{item.organizer}}</text>
+          </view>
+          <view class="card-footer">
+            <text class="status-tag">{{item.status}}</text>
+            <button class="apply-btn" size="mini" bindtap="onApply">立即报名</button>
+          </view>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

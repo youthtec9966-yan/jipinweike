@@ -1,0 +1,96 @@
+/* pages/academic/library/index.wxss */
+.container {
+  padding: 20rpx;
+}
+
+.search-bar {
+  display: flex;
+  align-items: center;
+  padding: 20rpx 30rpx;
+  margin-bottom: 40rpx;
+}
+
+.search-input {
+  flex: 1;
+  font-size: 28rpx;
+}
+
+.search-icon {
+  font-size: 36rpx;
+  padding-left: 20rpx;
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 24rpx;
+  padding-left: 10rpx;
+  border-left: 8rpx solid #2979ff;
+}
+
+.book-card {
+  display: flex;
+  padding: 24rpx;
+  margin-bottom: 24rpx;
+}
+
+.book-cover {
+  width: 140rpx;
+  height: 200rpx;
+  border-radius: 8rpx;
+  background-color: #eee;
+  margin-right: 24rpx;
+  flex-shrink: 0;
+}
+
+.book-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-right: 20rpx;
+}
+
+.book-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  color: #333;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
+.book-author {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.book-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 24rpx;
+  color: #999;
+}
+
+.days-left {
+  color: #2979ff;
+  font-weight: bold;
+}
+
+.days-left.urgent {
+  color: #ff4d4f;
+}
+
+.renew-btn {
+  align-self: center;
+  font-size: 24rpx;
+  margin: 0;
+  padding: 0 20rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  background-color: #f0f7ff;
+  color: #2979ff;
+}

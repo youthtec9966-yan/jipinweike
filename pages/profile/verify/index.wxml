@@ -1,0 +1,29 @@
+<view class="container">
+  <view class="header-tip">
+    <text class="title">学生身份认证</text>
+    <text class="desc">请完善您的个人信息，以便享受更多校园服务</text>
+  </view>
+
+  <view class="form-card">
+    <view class="form-item">
+      <text class="label">真实姓名</text>
+      <input class="input" placeholder="请输入您的姓名" value="{{name}}" bindinput="onInput" data-key="name"/>
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="label">学号</text>
+      <input class="input" placeholder="请输入您的学号" type="number" value="{{studentId}}" bindinput="onInput" data-key="studentId"/>
+    </view>
+    <view class="divider"></view>
+    <view class="form-item">
+      <text class="label">所属院系</text>
+      <input class="input" placeholder="请输入您的院系" value="{{department}}" bindinput="onInput" data-key="department"/>
+    </view>
+  </view>
+
+  <button class="submit-btn" bindtap="onSubmit">提交认证</button>
+  
+  <view class="tips">
+    <text>注：信息仅用于校园身份核验，我们将严格保护您的隐私安全。</text>
+  </view>
+</view>

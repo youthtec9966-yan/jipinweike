@@ -1,0 +1,26 @@
+<view class="container">
+  <view class="tabs">
+    <view class="tab-item {{activeTab === 0 ? 'active' : ''}}" bindtap="onTabClick" data-index="{{0}}">未完成</view>
+    <view class="tab-item {{activeTab === 1 ? 'active' : ''}}" bindtap="onTabClick" data-index="{{1}}">已完成</view>
+  </view>
+
+  <view class="homework-list">
+    <block wx:for="{{homeworkList}}" wx:key="id">
+      <view class="homework-card card-box">
+        <view class="card-header">
+          <text class="course-name">{{item.course}}</text>
+          <text class="deadline {{activeTab === 0 ? 'urgent' : ''}}">截止: {{item.deadline}}</text>
+        </view>
+        <view class="card-body">
+          <text class="homework-title">{{item.title}}</text>
+        </view>
+        <view class="card-footer">
+          <button class="action-btn" size="mini" type="{{activeTab === 0 ? 'primary' : 'default'}}">
+            {{activeTab === 0 ? '提交作业' : '查看详情'}}
+          </button>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{homeworkList.length === 0}}" class="empty-tips">暂无作业</view>
+  </view>
+</view>

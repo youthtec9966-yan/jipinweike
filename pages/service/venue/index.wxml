@@ -1,0 +1,80 @@
+<view class="container">
+  <!-- Tabs -->
+  <view class="tabs">
+    <view class="tab-item {{currentType === 'all' ? 'active' : ''}}" bindtap="switchType" data-type="all">全部</view>
+    <view class="tab-item {{currentType === 'classroom' ? 'active' : ''}}" bindtap="switchType" data-type="classroom">教室</view>
+    <view class="tab-item {{currentType === 'sports' ? 'active' : ''}}" bindtap="switchType" data-type="sports">体育</view>
+    <view class="tab-item {{currentType === 'meeting' ? 'active' : ''}}" bindtap="switchType" data-type="meeting">会议</view>
+    <view class="tab-item {{currentType === 'my_bookings' ? 'active' : ''}}" bindtap="switchType" data-type="my_bookings">我的预约</view>
+  </view>
+
+  <!-- List -->
+  <view class="venue-list" wx:if="{{currentType !== 'my_bookings'}}">
+    <block wx:for="{{filteredVenues}}" wx:key="id">
+      <view class="venue-card">
+        <view class="venue-info">
+          <view class="venue-name">{{item.name}}</view>
+          <view class="venue-meta">开放时间: {{item.openHours}}</view>
+          <view class="venue-status status-{{item.status}}">
+            {{item.status === 'open' ? '可预约' : (item.status === 'maintenance' ? '维护中' : '已关闭')}}
+          </view>
+        </view>
+        <view class="venue-action">
+          <button class="btn-book" disabled="{{item.status !== 'open'}}" bindtap="showBookingModal" data-id="{{item.id}}" data-name="{{item.name}}">预约</button>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{filteredVenues.length === 0}}" class="empty-tip">暂无相关场馆</view>
+  </view>
+
+  <!-- My Bookings List -->
+  <view class="booking-list" wx:if="{{currentType === 'my_bookings'}}">
+    <block wx:for="{{myBookings}}" wx:key="id">
+      <view class="venue-card">
+        <view class="venue-info">
+          <view class="venue-name">{{item.venueName || '未知场馆'}}</view>
+          <view class="venue-meta">日期: {{item.bookDate}}</view>
+          <view class="venue-meta">时间: {{item.startTime}}-{{item.endTime}}</view>
+          <view class="venue-status status-{{item.status}}">
+            {{item.status === 'pending' ? '待审核' : (item.status === 'approved' ? '已通过' : '已拒绝')}}
+          </view>
+        </view>
+      </view>
+    </block>
+    <view wx:if="{{myBookings.length === 0}}" class="empty-tip">暂无预约记录</view>
+  </view>
+
+  <!-- Booking Modal -->
+  <view class="modal-mask" wx:if="{{showModal}}" bindtap="hideModal"></view>
+  <view class="modal-content" wx:if="{{showModal}}">
+    <view class="modal-header">预约 {{selectedVenueName}}</view>
+    <view class="modal-body">
+      <picker mode="selector" range="{{availableDates}}" value="{{dateIndex}}" bindchange="bindDateChange">
+        <view class="form-item">
+          <text class="label">日期</text>
+          <text class="value">{{selectedDate || '暂无可选日期'}}</text>
+          <text class="arrow">></text>
+        </view>
+      </picker>
+      <view class="slot-section">
+        <view class="slot-title">可预约时段</view>
+        <view class="slot-list">
+          <block wx:for="{{slots}}" wx:key="id">
+            <view class="slot-item {{selectedSlotId === item.id ? 'active' : ''}} {{item.available ? '' : 'disabled'}}" bindtap="selectSlot" data-id="{{item.id}}" data-available="{{item.available}}">
+              {{item.startTime}}-{{item.endTime}}
+            </view>
+          </block>
+          <view wx:if="{{slots.length === 0}}" class="slot-empty">暂无可预约时段</view>
+        </view>
+      </view>
+      <view class="form-item input-item">
+        <text class="label">备注</text>
+        <input placeholder="预约事由（可选）" bindinput="bindRemarkInput" />
+      </view>
+    </view>
+    <view class="modal-footer">
+      <button class="btn-cancel" bindtap="hideModal">取消</button>
+      <button class="btn-confirm" bindtap="submitBooking">确认预约</button>
+    </view>
+  </view>
+</view>
